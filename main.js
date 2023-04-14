@@ -52,7 +52,7 @@ renderPerson(array[0])
 let index = 0;
 
 function prev (){
-    index<(array.length-1)?index++:index=0;
+    index>0?index--:index=array.length-1;
     renderPerson(array[index]);
 }
 function next (){
