@@ -90,6 +90,7 @@ h4{
 }
 p{
     color: #777;
+    min-height: 7em;
 }
 section>div{
     display: flex;

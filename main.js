@@ -1,8 +1,5 @@
-let $main = document.querySelector('main');
-let fragment = document.createElement('fragment');
-let $prev = document.querySelectorAll('i')[0];
-let $next = document.querySelectorAll('i')[1];
-let $random = document.querySelector('button');
+const $main = document.querySelector('main');
+const fragment = document.createElement('fragment');
 
 let array = [{
     name: 'Fernando Andrés Raggio',
@@ -26,23 +23,43 @@ let array = [{
     name: 'Joaquin Sampieri',
     img: 'https://unavatar.io/github/joacosam',
     job: 'Front-end Web Developer',
-    comment: 'Self-taught student and professional passionate about application development and software functionality.'
+    comment: "Hi, I'm Joaco. I'm a responsible person interested in starting to develop professionally as a developer to apply all the knowledge acquired in recent years. I'm capable of addressing client requirements, analyzing them, working in a team, and carrying out their development in a timely manner, complying with the best market practices and under agile methodologies."
 }]
 
-fragment.innerHTML =
-    `
-    <section>
-    <picture>
-        <img class="img" src="https://unavatar.io/github/JoeTheorium" alt="JoeTheorium">
-    </picture>
-    <h3>Susan Smith</h3>
-    <h4>WEB DEVELOPER</h4>
-    <p>I'm baby meggings twee healt goth +1. Bicycle rights numeric chartreuse before they sold out chambray pop-up. Shaman humblebrag pickled coloring book salvia hoodie, cold-pressed four dollar toast everyday carry</p>
-    <div>
-        <i class="fa-solid fa-chevron-left"></i>
-        <i class="fa-solid fa-chevron-right"></i>
-    </div>
-    <button>Surprise Me</button>
-    </section>
-    `
-$main.appendChild(fragment);
+function renderPerson (person) {
+    $main.innerHTML = ""
+    fragment.innerHTML =
+        `
+        <section>
+        <picture>
+            <img class="img" src="${person.img}" alt="${person.name}">
+        </picture>
+        <h3>${person.name}</h3>
+        <h4>${person.job}</h4>
+        <p>${person.comment}</p>
+        <div>
+            <i onclick="prev()" class="fa-solid fa-chevron-left"></i>
+            <i onclick="next()" class="fa-solid fa-chevron-right"></i>
+        </div>
+        <button onclick="random()">Surprise Me</button>
+        </section>
+        `
+    $main.appendChild(fragment);
+}
+
+renderPerson(array[0])
+
+let index = 0;
+
+function prev (){
+    index<(array.length-1)?index++:index=0;
+    renderPerson(array[index]);
+}
+function next (){
+    index<(array.length-1)?index++:index=0;
+    renderPerson(array[index]);
+}
+function random(){
+    index=Math.floor(Math.random()*array.length);
+    renderPerson(array[index]);
+}
